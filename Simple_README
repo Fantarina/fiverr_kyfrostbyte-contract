@@ -1,0 +1,66 @@
+There is the minimal version
+
+WARNING, we are working without a supervisor so any erroneous inout or command might crash the server and we may have to restart from the beginning.
+input:
+c(mydb_serv).
+
+
+STARTING the server.
+mydb_serv:start().
+
+Create an entry in the database ():
+
+    mydb_serv:write(YourKey,YourValue).   (example:    mydb_serv:write(1,"Hello")  )
+
+Read a value in the database ():
+
+    mydb_serv:read(YourKey).             (example:    mydb_serv:read(1)  )
+
+Update a value in the database ():
+
+    mydb_serv:update(YourKey,YourValue)   (example:     mydb_serv:update(1,"World")  )
+
+
+Delete a value in the database ():
+
+    mydb_serv:delete(YourKey).             (example:    mydb_serv:delete(1)  )
+
+
+Clear the database:
+
+    mydb_serv:clear(). 
+
+
+
+
+%NB we can still start it from the supervisor but a shell crash will kill the supervisor and our db:
+
+STARTING the supervisor ( will start also start our db  ).
+mydb_sup:start_link().
+
+Create an entry in the database ():
+
+    mydb_serv:write(YourKey,YourValue).   (example:    mydb_serv:write(1,"Hello")  )
+
+Read a value in the database ():
+
+    mydb_serv:read(YourKey).             (example:    mydb_serv:read(1)  )
+
+Update a value in the database ():
+
+    mydb_serv:update(YourKey,YourValue)   (example:     mydb_serv:update(1,"World")  )
+
+
+Delete a value in the database ():
+
+    mydb_serv:delete(YourKey).             (example:    mydb_serv:delete(1)  )
+
+
+Clear the database:
+
+    mydb_serv:clear(). 
+
+
+NEW ADDITION: crash the database:
+
+exit(whereis(mydb_serv),kill). (everything will work as there was nothing, you can try it with the version without supervisor to see the difference)

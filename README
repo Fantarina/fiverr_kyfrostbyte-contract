@@ -1,0 +1,51 @@
+
+This assume you have Erlang installed already
+
+Input erl in your command line
+
+to compile input:
+c(mydb_app).
+c(mydb_sup).
+c(mydb_serv).
+
+-We use an app because we run our code in the erlang shell and our supervisor will be linked to the shell otherwise, when we will crash our program the shell will also crash
+
+%%%ERRATUM, i totally forgot to write how to use about the application and the supervisor:
+inputing:
+application:start(mydb_app).
+will start everything automatically
+you won't have to gen_serv:start().
+
+The supervisor role is to restart the db incase of crash
+On the previous erroneous mydb_serv:write(YourKey) sould have made it crash and thus unusable.
+You can try retry it now, with various erroneous call and input it should be fine and working.
+The simplest version is too only use the mydb_serv.erl file
+%%%
+
+HOW TO:
+
+Create an entry in the database ():
+
+    mydb_serv:write(YourKey,YourValue).   (example:    mydb_serv:write(1,"Hello")  )
+
+Read a value in the database ():
+
+    mydb_serv:read(YourKey).             (example:    mydb_serv:read(1)  )
+
+Update a value in the database ():
+
+    mydb_serv:update(YourKey,YourValue)   (example:     mydb_serv:update(1,"World")  )
+
+
+Delete a value in the database ():
+
+    mydb_serv:delete(YourKey).             (example:    mydb_serv:delete(1)  )
+
+
+Clear the database:
+
+    mydb_serv:clear(). 
+
+
+
+
